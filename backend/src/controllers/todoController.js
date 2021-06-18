@@ -14,6 +14,7 @@ function toDoController() {
     const newToDo = new ToDo({
       ...req.body
     });
+    console.log(newToDo);
     newToDo.save((error) => {
       if (error) {
         console.log(error);
