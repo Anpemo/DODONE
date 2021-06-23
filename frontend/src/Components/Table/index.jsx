@@ -17,13 +17,19 @@ export default function Table({ component, columns, data }) {
   } = useTable({ columns, data });
 
   return (
-    <table {...getTableProps()} className="toDo">
+    <table {...getTableProps()} className="toDo-table">
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
-            ))}
+            {headerGroup.headers.map((column) => {
+              console.log(column);
+              return (
+                column.Header === 'Nombre'
+                  ? <th {...column.getHeaderProps()} className="toDo__headers-name--big">{column.render('Header').toUpperCase()}</th>
+                  : <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
+
+              );
+            })}
           </tr>
         ))}
       </thead>

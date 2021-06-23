@@ -5,13 +5,23 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
+.toDo-table{
+    width: 100vw;
+}
+
+.toDo__headers-name--big{
+    width: 40%;
+    padding: 1vw;
+    background-color: rgba(230, 189, 24, 0.57);
+    border: solid 1px rgba(0,0,0, 0.5);
+}
 
 .toDo__headers-name{
     justify-content:space-around;
-    border: solid 1px rgba(0,0,0, 0.5);
+    width: 15%;
     padding: 1vw;
+    border: solid 1px rgba(0,0,0, 0.5);
     background-color: rgba(230, 189, 24, 0.57);
-    width: 100vw;
 }
 
 .item__data--big{
@@ -19,7 +29,7 @@
     padding: 1vw;
     border-left: solid 1px rgba(0,0,0, 0.5);
     border-right: solid 1px rgba(0,0,0, 0.5);
-    text-align: center;
+
 }
 .item__data{
     width: 15%;
