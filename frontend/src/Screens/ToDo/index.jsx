@@ -13,8 +13,7 @@ export default function ToDo() {
           add a new task
         </p>
       </section>
-      <Table component={ToDo} />
-
+      <Table component="ToDo" />
     </>
   );
 }
