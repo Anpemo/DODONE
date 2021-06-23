@@ -48,8 +48,9 @@ export default function ToDo() {
         Header: 'Estado',
         accessor: 'state'
       }
-    ]
+    ], []
   );
+
   return (
     <>
       <Header component="toDo" />
@@ -118,7 +119,7 @@ export default function ToDo() {
       </section>
       {
        !newTask
-      && <Table component="ToDo" columns={columns} data={data} />
+      && <Table columns={columns} data={data} />
      }
     </>
   );

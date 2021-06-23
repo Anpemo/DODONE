@@ -6,8 +6,7 @@ import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 import './Table.css';
 
-// eslint-disable-next-line no-unused-vars
-export default function Table({ component, columns, data }) {
+export default function Table({ columns, data }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -21,15 +20,12 @@ export default function Table({ component, columns, data }) {
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => {
-              console.log(column);
-              return (
-                column.Header === 'Nombre'
-                  ? <th {...column.getHeaderProps()} className="toDo__headers-name--big">{column.render('Header').toUpperCase()}</th>
-                  : <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
+            {headerGroup.headers.map((column) => (
+              column.Header === 'Nombre'
+                ? <th {...column.getHeaderProps()} className="toDo__headers-name--big">{column.render('Header').toUpperCase()}</th>
+                : <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
 
-              );
-            })}
+            ))}
           </tr>
         ))}
       </thead>
