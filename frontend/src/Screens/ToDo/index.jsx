@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-//  faTrashAlt, faCheck,
-import React from 'react';
-import './toDo.css';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faCheck, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { useTable } from 'react-table';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import './toDo.css';
 import Header from '../../Components/Header';
+import Table from '../../Components/Table';
 
 export default function ToDo() {
+  const [newTask, setNewTask] = useState(false);
   const data = React.useMemo(() => [
     {
       name: 'Hacer la compra',
@@ -50,73 +50,76 @@ export default function ToDo() {
       }
     ]
   );
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow
-  } = useTable({ columns, data });
-
   return (
     <>
-      <Header view="toDo" />
+      <Header component="toDo" />
       <section className="new-task">
-        <p>
-          add a new task
-        </p>
+        <button
+          className="new-task__button"
+          onClick={() => { setNewTask(!newTask); }}
+          type="button"
+        >
+          AÑADIR TAREA
+          <FontAwesomeIcon icon={faPlusCircle} className="new-task__icon" />
+        </button>
+        {
+          newTask
+          && (
+          <div className="new-task__form">
+            <label htmlFor="taskName">
+              Escribe el nombre de la tarea:
+              <input
+                type="text"
+                name="taskName"
+                id="taskName"
+                placeholder="Escribe una tarea."
+                className="form__input"
+              />
+            </label>
+            <label htmlFor="priority">
+              Escribe un número que determine la prioridad:
+              <input
+                type="number"
+                name="priority"
+                id="priority"
+                placeholder="Del 1 al 5"
+                className="form__input"
+              />
+            </label>
+            <label htmlFor="class">
+              ¿A qué grupo pertenece esta tarea?
+              <input
+                type="text"
+                name="class"
+                id="class"
+                className="form__input"
+                placeholder="¿A qué grupo pertenece?"
+              />
+            </label>
+            <label htmlFor="expiration">
+              ¿Cuándo vence la tarea?
+              <input
+                type="date"
+                name="expiration"
+                id="expiration"
+                className="form__input"
+              />
+            </label>
+            <button
+              type="submit"
+              className="form__input-button"
+            >
+              ENVIAR
+
+            </button>
+          </div>
+          )
+        }
       </section>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  if (cell.column.id === 'name') {
-                    return (
-                      <td {...cell.getCellProps()}>
-                        {' '}
-                        {cell.render('Cell')}
-                        {' '}
-                        <FontAwesomeIcon icon={faPencilAlt} onClick={() => console.log('edit')} />
-
-                      </td>
-                    );
-                  } if (cell.column.id === 'state') {
-                    return (
-                      <td {...cell.getCellProps()}>
-                        <FontAwesomeIcon icon={faCheck} />
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </td>
-                    );
-                  }
-                  return (
-                    <td {...cell.getCellProps()}>
-                      {' '}
-                      {cell.render('Cell')}
-                      {' '}
-
-                    </td>
-                  );
-                })}
-
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-
+      {
+       !newTask
+      && <Table component="ToDo" columns={columns} data={data} />
+     }
     </>
   );
 }
