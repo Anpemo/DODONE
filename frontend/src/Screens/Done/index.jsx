@@ -1,54 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../Components/Header';
 import Table from '../../Components/Table';
+import { getAllTasks } from '../../redux/actions/toDoActionsCreators';
 
 export default function Done() {
-  const data = React.useMemo(() => [
-    {
-      name: 'Hacer la compra',
-      priority: 1,
-      class: 'Compras',
-      vencimiento: '13-oct-2020',
-      state: ''
-    },
-    {
-      name: 'Limpiar el cuarto',
-      priority: 1,
-      class: 'Compras',
-      vencimiento: '13-oct-2020',
-      state: ''
-    }
-  ],
-  []);
+  const dispatch = useDispatch();
+  const tasks = useSelector((store) => store.tasks);
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Nombre',
-        accessor: 'name'
-      },
-      {
-        Header: 'Prioridad',
-        accessor: 'priority'
-      },
-      {
-        Header: 'Grupo',
-        accessor: 'class'
-      },
-      {
-        Header: 'Fecha de vencimiento',
-        accessor: 'vencimiento'
-      },
-      {
-        Header: 'Estado',
-        accessor: 'state'
-      }
-    ], []
-  );
+  useEffect(() => {
+    dispatch(getAllTasks());
+  }, []);
+
   return (
     <>
       <Header component="done" />
-      <Table columns={columns} data={data} />
+      <Table tasks={tasks} />
 
     </>
   );
