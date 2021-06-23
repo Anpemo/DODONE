@@ -6,6 +6,7 @@
 header{
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
     background: url('../../Assets/Images/pexels-photo-3499125.jpeg');
     background-position: center;
     background-size: 50vw;
@@ -44,12 +45,6 @@ a{
     font-weight: 400;
     cursor: pointer;
 }
-h1{
-    all: unset;
-    font-size: 3vw;
-    color: rgba(0,0,0, 0.75);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    align-self: center;
-    justify-self: flex-end;
+.nav__a--active{
+    color: rgba(230, 189, 24, 1 )
 }

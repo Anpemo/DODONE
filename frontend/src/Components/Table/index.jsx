@@ -6,8 +6,34 @@ import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 import './Table.css';
 
-// eslint-disable-next-line no-unused-vars
-export default function Table({ component, columns, data }) {
+export default function Table({ tasks }) {
+  const data = React.useMemo(() => tasks,
+    []);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Nombre',
+        accessor: 'taskName'
+      },
+      {
+        Header: 'Prioridad',
+        accessor: 'priority'
+      },
+      {
+        Header: 'Grupo',
+        accessor: 'taskGroup'
+      },
+      {
+        Header: 'Fecha de vencimiento',
+        accessor: 'expiration'
+      },
+      {
+        Header: 'Estado',
+        accessor: 'state'
+      }
+    ], []
+  );
   const {
     getTableProps,
     getTableBodyProps,
@@ -17,12 +43,15 @@ export default function Table({ component, columns, data }) {
   } = useTable({ columns, data });
 
   return (
-    <table {...getTableProps()} className="toDo">
+    <table {...getTableProps()} className="toDo-table">
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
+              column.Header === 'Nombre'
+                ? <th {...column.getHeaderProps()} className="toDo__headers-name--big">{column.render('Header').toUpperCase()}</th>
+                : <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
+
             ))}
           </tr>
         ))}
@@ -33,7 +62,7 @@ export default function Table({ component, columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                if (cell.column.id === 'name') {
+                if (cell.column.id === 'taskName') {
                   return (
                     <td {...cell.getCellProps()} className="item__data--big">
                       {cell.render('Cell') }
@@ -67,7 +96,5 @@ export default function Table({ component, columns, data }) {
   );
 }
 Table.propTypes = {
-  component: PropTypes.shape('').isRequired,
-  columns: PropTypes.shape([]).isRequired,
-  data: PropTypes.shape([]).isRequired
+  tasks: PropTypes.shape([]).isRequired
 };

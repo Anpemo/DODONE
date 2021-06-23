@@ -4,9 +4,9 @@ const toDoSchema = new mongoose.Schema(
   {
     taskName: 'String',
     priority: 'Number',
-    class: 'String',
+    taskGroup: 'String',
     creationDate: 'String',
-    doneDate: 'String',
+    expiration: 'String',
     userId: 'String'
   }
 );
