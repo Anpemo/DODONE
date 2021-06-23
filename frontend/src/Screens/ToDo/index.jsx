@@ -67,12 +67,12 @@ export default function ToDo() {
           add a new task
         </p>
       </section>
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="toDo">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                <th {...column.getHeaderProps()} className="toDo__headers-name">{column.render('Header').toUpperCase()}</th>
               ))}
             </tr>
           ))}
@@ -85,27 +85,24 @@ export default function ToDo() {
                 {row.cells.map((cell) => {
                   if (cell.column.id === 'name') {
                     return (
-                      <td {...cell.getCellProps()}>
+                      <td {...cell.getCellProps()} className="item__data--big">
+                        {cell.render('Cell') }
                         {' '}
-                        {cell.render('Cell')}
-                        {' '}
-                        <FontAwesomeIcon icon={faPencilAlt} onClick={() => console.log('edit')} />
+                        <FontAwesomeIcon icon={faPencilAlt} className="data__icon" onClick={() => console.log('edit')} />
 
                       </td>
                     );
                   } if (cell.column.id === 'state') {
                     return (
-                      <td {...cell.getCellProps()}>
-                        <FontAwesomeIcon icon={faCheck} />
-                        <FontAwesomeIcon icon={faTrashAlt} />
+                      <td {...cell.getCellProps()} className="item__data">
+                        <FontAwesomeIcon icon={faCheck} className="data__icon" />
+                        <FontAwesomeIcon icon={faTrashAlt} className="data__icon" />
                       </td>
                     );
                   }
                   return (
-                    <td {...cell.getCellProps()}>
-                      {' '}
+                    <td {...cell.getCellProps()} className="item__data">
                       {cell.render('Cell')}
-                      {' '}
 
                     </td>
                   );
