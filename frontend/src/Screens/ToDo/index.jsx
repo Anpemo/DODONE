@@ -1,7 +1,11 @@
 import React from 'react';
+import Header from '../../Components/Header';
 
 export default function ToDo() {
   return (
-    <h1>hola toDo</h1>
+    <>
+      <Header view="toDo" />
+      <h1>hola toDo</h1>
+    </>
   );
 }

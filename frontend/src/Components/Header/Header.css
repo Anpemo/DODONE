@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    background: url('../../Assets/Images/pexels-photo-3499125.jpeg');
+    background-position: center;
+    background-size: 50vw;
+    height: 40vh;
+}
+.header--top{
+    display: flex;
+
+}
+.header__logo-container{
+    display: flex;
+    width: 20vw;
+    height: 10vh;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+.logo-container__logo{
+    align-self: center;
+    font-size: 4vw;
+    color:rgba(255, 255, 255, 1);
+    font-family: 'Dancing Script'
+}
+nav{
+    display: flex;
+    justify-content: flex-end;  
+    width: 80vw;
+    height: 10vh;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+a{
+    all: unset;
+    align-self: center;
+    margin: 3vw;
+    font-size: 3vw;
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+}
+h1{
+    all: unset;
+    font-size: 3vw;
+    color: rgba(0,0,0, 0.75);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    align-self: center;
+    justify-self: center;
+
+}

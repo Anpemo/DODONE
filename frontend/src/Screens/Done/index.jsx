@@ -1,7 +1,11 @@
 import React from 'react';
+import Header from '../../Components/Header';
 
 export default function Done() {
   return (
-    <h1>hola Done</h1>
+    <>
+      <Header view="done" />
+      <h1>hola Done</h1>
+    </>
   );
 }
