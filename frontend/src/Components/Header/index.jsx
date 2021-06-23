@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import PropTypes from 'prop-types';
 
-export default function Header({ view }) {
+export default function Header({ component }) {
   return (
     <header>
       <section className="header--top">
@@ -15,7 +15,7 @@ export default function Header({ view }) {
         </nav>
       </section>
       {
-          view === 'toDo'
+          component === 'toDo'
             ? <h1>POR HACER</h1>
             : <h1>HECHO</h1>
       }
@@ -23,5 +23,5 @@ export default function Header({ view }) {
   );
 }
 Header.propTypes = {
-  view: PropTypes.shape('').isRequired
+  component: PropTypes.shape('').isRequired
 };

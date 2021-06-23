@@ -5,7 +5,7 @@ import Table from '../../Components/Table';
 export default function Done() {
   return (
     <>
-      <Header view="done" />
+      <Header component="done" />
       <Table component="done" />
     </>
   );

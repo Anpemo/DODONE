@@ -7,50 +7,7 @@ import PropTypes from 'prop-types';
 import './Table.css';
 
 // eslint-disable-next-line no-unused-vars
-export default function Table({ component }) {
-  const data = React.useMemo(() => [
-    {
-      name: 'Hacer la compra',
-      priority: 1,
-      class: 'Compras',
-      vencimiento: '13-oct-2020',
-      state: ''
-    },
-    {
-      name: 'Limpiar el cuarto',
-      priority: 1,
-      class: 'Compras',
-      vencimiento: '13-oct-2020',
-      state: ''
-    }
-  ],
-  []);
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Nombre',
-        accessor: 'name'
-      },
-      {
-        Header: 'Prioridad',
-        accessor: 'priority'
-      },
-      {
-        Header: 'Grupo',
-        accessor: 'class'
-      },
-      {
-        Header: 'Fecha de vencimiento',
-        accessor: 'vencimiento'
-      },
-      {
-        Header: 'Estado',
-        accessor: 'state'
-      }
-    ]
-  );
-
+export default function Table({ component, columns, data }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -81,7 +38,7 @@ export default function Table({ component }) {
                     <td {...cell.getCellProps()} className="item__data--big">
                       {cell.render('Cell') }
                       {' '}
-                      <FontAwesomeIcon icon={faPencilAlt} className="data__icon" onClick={() => console.log('edit')} />
+                      <FontAwesomeIcon icon={faPencilAlt} className="data__icon" />
 
                     </td>
                   );
@@ -110,5 +67,7 @@ export default function Table({ component }) {
   );
 }
 Table.propTypes = {
-  component: PropTypes.shape('').isRequired
+  component: PropTypes.shape('').isRequired,
+  columns: PropTypes.shape([]).isRequired,
+  data: PropTypes.shape([]).isRequired
 };
